@@ -3,6 +3,7 @@ App for COMP437 group project, spring 2016.
 
 ## Description
 Written with MeteorJS.
+
 #### Dependency
 - Google API server key
 - Package
@@ -10,6 +11,7 @@ Written with MeteorJS.
 	- Restivus: a package for RESTFUL API support
 - Deployment
 	- NodeJS v0.10.40
+
 #### Usage
 ##### Restful request
 /api/geo/(coordinate)/(nature of place)/(search radius)
