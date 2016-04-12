@@ -1,5 +1,6 @@
 package hk.edu.polyu.comp.hellohongkong.app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -48,5 +49,10 @@ public class HelloWorldActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void hotSpotButtonClick(View view) {
+        Intent i = new Intent(getApplicationContext(), HotSpotInfo.class);
+        startActivity(i);
     }
 }

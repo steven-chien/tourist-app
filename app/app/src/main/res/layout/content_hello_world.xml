@@ -16,5 +16,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World! This is the testing activity for COMP437 Hello Hong Kong Project!"
-        android:textSize="30dp"/>
+        android:textSize="30dp"
+        android:id="@+id/textView" />
+
+    <Button
+        android:id="@+id/hotSpotButton"
+        android:text="@string/hot_spot"
+        android:onClick="hotSpotButtonClick"
+        android:textColor="#737373"
+        android:textSize="21sp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="3"
+        android:shadowDy="1"
+        android:shadowRadius="1"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="82dp"
+        android:layout_marginStart="82dp"
+        android:layout_marginTop="119dp" />
+
 </RelativeLayout>
