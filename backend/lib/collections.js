@@ -12,4 +12,8 @@ Promotion.insert({ name: "History Museum", discount: "less $10 for entrance fee"
 Promotion.insert({ name: "Science Museum", discount: "less $5 for entrance fee", terms: "3423747164" });
 Promotion.insert({ name: "Star Ferry Tour", discount: "10% off", terms: "3423747164" });
 
+Events = new Mongo.Collection('events');
+Events.remove({});
+Events.insert({ name: "A Symphony of Lights", spot: 'Tsim Sha Tsui Promenade', time: "8pm", date: "Everyday" });
+
 Comments = new Mongo.Collection('comments');
