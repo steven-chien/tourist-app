@@ -12,4 +12,9 @@ Promotion.insert({ name: "History Museum", discount: "less $10 for entrance fee"
 Promotion.insert({ name: "Science Museum", discount: "less $5 for entrance fee", terms: "3423747164" });
 Promotion.insert({ name: "Star Ferry Tour", discount: "10% off", terms: "3423747164" });
 
+Events = new Mongo.Collection('events');
+Events.remove({});
+Events.insert({ name: "Symphony of Lights", time: "8 pm", date: "every", coordinate: { lat: 22.2932695, lon: 22.2932695 } });
+//Events.insert({ name: "", time: "8 pm", date: "every", coordinate: { lat: 22.2932695, lon: 22.2932695 } });
+
 Comments = new Mongo.Collection('comments');
