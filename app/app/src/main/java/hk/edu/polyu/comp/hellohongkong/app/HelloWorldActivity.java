@@ -52,7 +52,10 @@ public class HelloWorldActivity extends AppCompatActivity {
     }
 
     public void hotSpotButtonClick(View view) {
-        Intent i = new Intent(getApplicationContext(), HotSpotInfo.class);
-        startActivity(i);
+        //Intent i = new Intent(getApplicationContext(), HotSpotInfo.class);
+        //startActivity(i);
+        Intent intent = new Intent(getApplicationContext(), EventDetails.class);
+        intent.putExtra("obj_id", "23YndcrshwaYhyFyN");
+        startActivity(intent);
     }
 }

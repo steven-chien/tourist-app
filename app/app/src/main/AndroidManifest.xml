@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="hk.edu.polyu.comp.hellohongkong.app">
 
-    <!--  Internet Permissions -->
+    <!-- Internet Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -21,11 +21,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity android:name=".NearFieldCommunicationActivity"></activity>-->
+        <!-- <activity android:name=".NearFieldCommunicationActivity"></activity> -->
         <activity
             android:name=".HotSpotInfo"
-            android:label="Get hot spots information" >
-        </activity>
+            android:label="Get hot spots information"></activity>
+        <activity
+            android:name=".EventDetails"
+            android:label="@string/title_activity_event_details"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
