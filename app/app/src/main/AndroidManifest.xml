@@ -24,7 +24,7 @@
         <!--<activity android:name=".NearFieldCommunicationActivity"></activity>-->
         <activity
             android:name=".HotSpotInfo"
-            android:label="Get hot spots information" >
+            android:label="Hot spots overview" >
         </activity>
     </application>
 
