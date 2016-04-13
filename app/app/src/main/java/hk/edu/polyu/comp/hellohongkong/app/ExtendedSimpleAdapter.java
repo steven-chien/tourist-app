@@ -67,6 +67,8 @@ public class ExtendedSimpleAdapter extends SimpleAdapter{
         final ViewBinder binder = super.getViewBinder();
         final int count = to.length;
 
+        view.setTag(dataSet.get(from[count]));
+
         for (int i = 0; i < count; i++) {
             final View v = view.findViewById(to[i]);
             if (v != null) {

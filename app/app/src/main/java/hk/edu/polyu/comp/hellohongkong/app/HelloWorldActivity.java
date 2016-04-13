@@ -1,18 +1,14 @@
 package hk.edu.polyu.comp.hellohongkong.app;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import java.io.InputStream;
-import java.net.URL;
+import android.view.View;
 
 public class HelloWorldActivity extends AppCompatActivity {
 

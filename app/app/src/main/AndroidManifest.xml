@@ -26,6 +26,10 @@
             android:name=".HotSpotInfo"
             android:label="Hot spots overview" >
         </activity>
+        <activity
+            android:name=".HotSpotDetail"
+            android:label="Hot spots details" >
+        </activity>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package hk.edu.polyu.comp.hellohongkong.app;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.RectF;
@@ -8,7 +9,10 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -81,14 +85,25 @@ public class HotSpotInfo extends AppCompatActivity {
                         spotInfo = jsonArray.getJSONObject(i);
                         HashMap<String, Object> map = new HashMap<String, Object>();
                         Bitmap bm = new ImageUtil().execute(spotInfo.getString("preview")).get();
-                        System.out.println("MZ: width" + bm.getWidth() + "height" + bm.getHeight());
                         map.put("image", scaleCenterCrop(bm, 400, 500));
                         map.put("text", spotInfo.getString("name"));
+                        map.put("id", spotInfo.getString("_id"));
                         imagelist.add(map);
                     }
-                    ExtendedSimpleAdapter simpleAdapter = new ExtendedSimpleAdapter(getApplicationContext(), imagelist, R.layout.items, new String[] { "image", "text" }, new int[] {R.id.image, R.id.title });
+                    ExtendedSimpleAdapter simpleAdapter = new ExtendedSimpleAdapter(getApplicationContext(), imagelist, R.layout.items, new String[] { "image", "text", "id" }, new int[] {R.id.image, R.id.title });
                     if (gridview != null) {
                         gridview.setAdapter(simpleAdapter);
+                        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view,
+                                                    int position, long id) {
+                                TextView t = (TextView)view.findViewById(R.id.title);
+                                Intent i = new Intent(getApplicationContext(), HotSpotDetail.class);
+                                i.putExtra("id", view.getTag().toString());
+                                i.putExtra("name", t.getText().toString());
+                                startActivity(i);
+                            }
+                        });
                     }
                 } else {
                     System.out.println("json status is not successful");
