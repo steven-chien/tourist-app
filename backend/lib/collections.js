@@ -15,9 +15,56 @@ Promotion.insert({ name: "Star Ferry Tour", discount: "10% off", terms: "3423747
 
 Events = new Mongo.Collection('events');
 Events.remove({});
-Events.insert({ name: "A Symphony of Lights", spot: 'Tsim Sha Tsui Promenade', time: "8pm", date: "Everyday", description: "The world's largest daily light show." });
-Events.insert({ name: "The Piu Sik  (Floating Colours) Parade", spot: 'Chang Chau', time: "", date: "11-15 May 2016", description: "The highlight of the festival is the Piu Sik (Floating Colours) Parade. This dramatic reenactment of the ceremonial parade held to drive away a plague a century ago sees young children, dressed in the guises of traditional deities and modern celebrities, balance on poles and accompanied by gongs and lion dancers, appearing to float above the crowds in a carnival-like procession." });
-Events.insert({ name: "Dragon Boat Races", spot: '', time: "", date: "9 June 2016", description: "he Dragon Boat Festival, also known as Tuen Ng Festival, commemorates the death of Qu Yuan, a Chinese national hero. In a protest against corrupt rulers, Qu drowned himself in the Mi Lo River. To scare away fish from eating his body, the townspeople beat drums and threw glutinous rice dumplings called 'zong' into the water. Today, this event is remembered by Chinese people around the world, who eat zong and beat drums on dragon boat races." });
-Events.insert({ name: "Hong Kong Wine and Dine Fest", spot: 'Central Harbourfront Event Space', time: "", date: "27–30 October 2016 (Thursday to Sunday)", description: "Around 144,000 people came to the 2015 event to sample great wines and culinary offerings from 23 countries." });
+//Events.insert({ name: "A Symphony of Lights", spot: 'Tsim Sha Tsui Promenade', start: , description: "The world's largest daily light show." });
+//Events.insert({ name: "The Piu Sik  (Floating Colours) Parade", spot: 'Chang Chau', time: "", date: "11-15 May 2016", description: "The highlight of the festival is the Piu Sik (Floating Colours) Parade. This dramatic reenactment of the ceremonial parade held to drive away a plague a century ago sees young children, dressed in the guises of traditional deities and modern celebrities, balance on poles and accompanied by gongs and lion dancers, appearing to float above the crowds in a carnival-like procession." });
+//Events.insert({ name: "Dragon Boat Races", spot: '', time: "", date: "9 June 2016", description: "he Dragon Boat Festival, also known as Tuen Ng Festival, commemorates the death of Qu Yuan, a Chinese national hero. In a protest against corrupt rulers, Qu drowned himself in the Mi Lo River. To scare away fish from eating his body, the townspeople beat drums and threw glutinous rice dumplings called 'zong' into the water. Today, this event is remembered by Chinese people around the world, who eat zong and beat drums on dragon boat races." });
+//Events.insert({ name: "Hong Kong Wine and Dine Fest", spot: 'Central Harbourfront Event Space', time: "", date: "27–30 October 2016 (Thursday to Sunday)", description: "Around 144,000 people came to the 2015 event to sample great wines and culinary offerings from 23 countries." });
+
+var event_data = [
+{
+"name": "ea",
+"start": Date.parse("2016-04-12 04:39"),
+"end": Date.parse("2016-04-20 01:35"),
+"location": "Bentonville",
+"description": "Sunt non proident ullamco sunt anim ad consectetur ut nostrud reprehenderit. Do eu excepteur laborum et est anim elit aute culpa aute minim. Ut ex voluptate tempor ipsum commodo aliquip ullamco cillum. Id nisi commodo est tempor voluptate laborum ut et nostrud qui non ea. Adipisicing in eu excepteur id ea.\r\n"
+
+},
+{
+"name": "culpa",
+"start": Date.parse("2016-04-06 06:07"),
+"end": Date.parse("2016-04-17 09:59"),
+"location": "Kohatk",
+"description": "Deserunt deserunt qui minim proident mollit esse laboris laboris sunt. Nulla pariatur proident non duis id aliqua laboris. Cillum Lorem culpa non reprehenderit in cupidatat tempor quis. Fugiat excepteur amet ad ut minim. Veniam esse excepteur aute cillum duis id ad voluptate. Duis officia officia dolore aliquip culpa tempor.\r\n"
+
+},
+{
+"name": "reprehenderit",
+"start": Date.parse("2016-04-07 02:13"),
+"end": Date.parse("2016-04-19 11:43"),
+"location": "Moraida",
+"description": "Aute laborum sunt minim cupidatat. Labore sunt commodo laboris proident qui cillum. Laborum officia nostrud ex pariatur ea. Sint dolor sint reprehenderit excepteur laboris velit aliquip pariatur consequat id incididunt sint ut pariatur.\r\n"
+
+},
+{
+"name": "officia",
+"start": Date.parse("2016-04-02 10:20"),
+"end": Date.parse("2016-04-21 01:38"),
+"location": "Brooktrails",
+"description": "Eiusmod duis esse commodo ea pariatur cupidatat. Nostrud occaecat fugiat exercitation culpa elit adipisicing. Aute consequat aliqua sint velit labore velit. Veniam occaecat labore quis aute laborum velit deserunt quis in est ipsum non ipsum commodo. Occaecat reprehenderit aute laboris est aliquip id qui sint cupidatat est. Lorem aute aute ullamco non sit exercitation sint cupidatat dolore dolor et. Sunt consectetur sint duis consectetur laborum Lorem tempor pariatur labore ea quis aliqua.\r\n"
+
+},
+{
+"name": "nulla",
+"start": Date.parse("2016-04-01 10:04"),
+"end": Date.parse("2016-04-26 11:03"),
+"location": "Summerset",
+"description": "Id id est nulla aute velit. Qui ad quis sint culpa ut sit laborum enim. Qui ea veniam enim aute dolore dolor reprehenderit sint.\r\n"
+}
+];
+
+_.each(event_data, function(doc) {
+	    Events.insert(doc);
+
+});
 
 Comments = new Mongo.Collection('comments');
