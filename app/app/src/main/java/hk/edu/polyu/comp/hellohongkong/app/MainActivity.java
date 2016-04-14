@@ -10,7 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class HelloWorldActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,11 @@ public class HelloWorldActivity extends AppCompatActivity {
 
     public void hotSpotButtonClick(View view) {
         Intent i = new Intent(getApplicationContext(), HotSpotInfo.class);
+        startActivity(i);
+    }
+
+    public void eventsButtonClick(View view) {
+        Intent i = new Intent(getApplicationContext(), EventsInfo.class);
         startActivity(i);
     }
 

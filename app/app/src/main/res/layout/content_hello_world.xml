@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="hk.edu.polyu.comp.hellohongkong.app.HelloWorldActivity"
+    tools:context="hk.edu.polyu.comp.hellohongkong.app.MainActivity"
     tools:showIn="@layout/activity_hello_world">
 
     <TextView
@@ -24,10 +24,10 @@
         android:text="@string/hot_spot"
         android:onClick="hotSpotButtonClick"
         android:textColor="#737373"
-        android:textSize="21sp"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:background="@drawable/buttonshape"
+        android:textSize="20sp"
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        android:background="@drawable/buttonshape_hotspot"
         android:shadowColor="#A8A8A8"
         android:shadowDx="3"
         android:shadowDy="1"
@@ -38,5 +38,23 @@
         android:layout_marginLeft="82dp"
         android:layout_marginStart="82dp"
         android:layout_marginTop="119dp" />
+
+    <Button
+        android:id="@+id/eventsButton"
+        android:onClick="eventsButtonClick"
+        android:text="Events"
+        android:textColor="#737373"
+        android:textSize="20sp"
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        android:background="@drawable/buttonshape_events"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="3"
+        android:shadowDy="1"
+        android:shadowRadius="1"
+        android:layout_marginLeft="10dp"
+        android:layout_alignTop="@+id/hotSpotButton"
+        android:layout_toRightOf="@+id/hotSpotButton"
+        android:layout_toEndOf="@+id/hotSpotButton" />
 
 </RelativeLayout>
