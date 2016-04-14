@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+    private static boolean svIsHotSpotInfoGot = false;
     private final int BACKGROUND_MIN = 0;
     private final int BACKGROUND_MAX = 3;
 
@@ -75,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Request Hot Spot Info
-        svServerRequestManager.requestHotSpotInfo();
+        if (!svIsHotSpotInfoGot) {
+            svServerRequestManager.requestHotSpotInfo();
+            svIsHotSpotInfoGot = true;
+        }
     }
 }

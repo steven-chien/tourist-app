@@ -1,15 +1,10 @@
 package hk.edu.polyu.comp.hellohongkong.app;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.RectF;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -19,37 +14,27 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 /**
  * Created by zhoumoyuan on 4/12/16.
  */
 public class HotSpotInfo extends AppCompatActivity {
-    JSONObject json;
-    // Creating JSON Parser object
-    JSONParser jParser = new JSONParser();
-    private static final String url_get = "https://46.101.253.211/api/hotspot";
-    private static final String TAG_STATUS = "status";
-    private static final String TAG_SUCCESS = "success";
-    private static final String TAG_DATA = "data";
-
+    private TourSpotManager svTourSpotManager;
     private Resources mvResources;
     private Toolbar mvToolbar;
+
+    private GridView mvGridView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hot_spot);
         mvResources = getResources();
+        svTourSpotManager = TourSpotManager.getInstance();
 
         mvToolbar = (Toolbar) findViewById(R.id.myToolbar);
         setSupportActionBar(mvToolbar);
@@ -59,11 +44,8 @@ public class HotSpotInfo extends AppCompatActivity {
             mvToolbar.setTitle(mvResources.getString(R.string.app_name));
         }
 
-        ProgressBar pb = (ProgressBar) findViewById(R.id.loadingPanel);
-        if (pb != null) {
-            pb.getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
-        }
-        new LoadGetTask().execute();
+        mvGridView = (GridView) findViewById(R.id.gridView);
+        setupUI("All");
     }
 
     @Override
@@ -77,16 +59,16 @@ public class HotSpotInfo extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem pItem) {
         switch (pItem.getItemId()) {
             case R.id.action_bar_hongkong:
-                // Display Hong Kong Island Hot Spot Only
+                setupUI("Hong Kong");
                 return true;
             case R.id.action_bar_kowloon:
-                // Display Kowloon Hot Spot Only
+                setupUI("Kowloon");
                 return true;
             case R.id.action_bar_newterritories:
-                // Display New Territories Hot Spot Only
+                setupUI("New Territories");
                 return true;
             case R.id.action_bar_all:
-                // Display All Hot Spot Only
+                setupUI("All");
                 return true;
 
             default:
@@ -97,83 +79,43 @@ public class HotSpotInfo extends AppCompatActivity {
         }
     }
 
-    /**
-     * Background Async Task to get hot spots information by making HTTP Request
-     * */
-    class LoadGetTask extends AsyncTask<String, String, String> {
+    public void setupUI(String pRegion) {
+        ArrayList<TourSpot> lvTourSpotList = svTourSpotManager.getTourSpotList();
+        ArrayList<HashMap<String, Object>> lvImageList = new ArrayList<HashMap<String, Object>>();
 
-        /**
-         * Before starting background thread
-         * */
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-
-        protected String doInBackground(String... args) {
-            // getting JSON string from URL
-            try {
-                json = jParser.makeHttpRequest(url_get, "GET");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
-        @TargetApi(Build.VERSION_CODES.KITKAT)
-        protected void onPostExecute(String file_url) {
-            //TextView t = (TextView) findViewById(R.id.response);
-            //t.setText(json.toString());
-            GridView gridview = (GridView) findViewById(R.id.gridView);
-
-            //Check for result
-            try {
-                if (Objects.equals(json.getString(TAG_STATUS), TAG_SUCCESS)){
-                    ProgressBar pb = (ProgressBar) findViewById(R.id.loadingPanel);
-                    if (pb != null) {
-                        pb.setVisibility(View.GONE);
-                    }
-                    System.out.println("json status is successful");
-                    JSONArray jsonArray = json.getJSONArray(TAG_DATA);
-                    JSONObject spotInfo;
-                    ArrayList<HashMap<String, Object>> imagelist = new ArrayList<HashMap<String, Object>>();
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        spotInfo = jsonArray.getJSONObject(i);
-                        HashMap<String, Object> map = new HashMap<String, Object>();
-                        Bitmap bm = new ImageUtil().execute(spotInfo.getString("preview")).get();
-                        map.put("image", scaleCenterCrop(bm, 400, 500));
-                        map.put("text", spotInfo.getString("name"));
-                        map.put("id", spotInfo.getString("_id"));
-                        imagelist.add(map);
-                    }
-                    ExtendedSimpleAdapter simpleAdapter = new ExtendedSimpleAdapter(getApplicationContext(), imagelist, R.layout.items, new String[] { "image", "text", "id" }, new int[] {R.id.image, R.id.title });
-                    if (gridview != null) {
-                        gridview.setAdapter(simpleAdapter);
-                        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view,
-                                                    int position, long id) {
-                                TextView t = (TextView)view.findViewById(R.id.title);
-                                Intent i = new Intent(getApplicationContext(), TourSpotDetailActivity.class);
-                                i.putExtra("id", view.getTag().toString());
-                                i.putExtra("name", t.getText().toString());
-                                startActivity(i);
-                            }
-                        });
-                    }
-                } else {
-                    System.out.println("json status is not successful");
+        try {
+            for (TourSpot lvTourSpot : lvTourSpotList) {
+                if (pRegion.equals("All") || pRegion.equals(lvTourSpot.getHKRegion())) {
+                    HashMap<String, Object> map = new HashMap<String, Object>();
+                    Bitmap bm = new ImageUtil().execute(lvTourSpot.getImageURL()).get();
+                    map.put("image", scaleCenterCrop(bm, 400, 500));
+                    map.put("text", lvTourSpot.getName());
+                    map.put("id", lvTourSpot.getID());
+                    lvImageList.add(map);
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-
-
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
 
+        ExtendedSimpleAdapter simpleAdapter = new ExtendedSimpleAdapter(getApplicationContext(), lvImageList, R.layout.items, new String[] { "image", "text", "id" }, new int[] {R.id.image, R.id.title });
+        if (mvGridView != null) {
+            mvGridView.setAdapter(simpleAdapter);
+            mvGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view,
+                                        int position, long id) {
+                    TextView t = (TextView) view.findViewById(R.id.title);
+                    Intent i = new Intent(getApplicationContext(), TourSpotDetailActivity.class);
+                    i.putExtra("id", view.getTag().toString());
+                    i.putExtra("name", t.getText().toString());
+                    startActivity(i);
+                }
+            });
+        }
     }
+
     public Bitmap scaleCenterCrop(Bitmap source, int newHeight, int newWidth) {
         int sourceWidth = source.getWidth();
         int sourceHeight = source.getHeight();
