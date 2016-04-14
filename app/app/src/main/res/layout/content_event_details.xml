@@ -119,4 +119,15 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add to calendar"
+        android:id="@+id/addToCalendar"
+        android:onClick="buttonOpenCalendarClick"
+        android:layout_marginTop="59dp"
+        android:layout_below="@+id/descriptionTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
