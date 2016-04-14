@@ -68,11 +68,10 @@ public class MainActivity extends AppCompatActivity {
         mvMainNFCButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, TourSpotDetailActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, NearFieldCommunicationActivity.class);
+                startActivity(intent);
             }
         });
-
 
         // Request Hot Spot Info
         svServerRequestManager.requestHotSpotInfo();
