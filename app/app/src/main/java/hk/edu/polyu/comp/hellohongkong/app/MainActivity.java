@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
         mvMainEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, TourSpotDetailActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, EventsInfo.class);
+                startActivity(intent);
             }
         });
 
