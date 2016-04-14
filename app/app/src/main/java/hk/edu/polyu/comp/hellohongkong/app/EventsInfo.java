@@ -96,22 +96,30 @@ public class EventsInfo extends AppCompatActivity {
                         eventsInfo = jsonArray.getJSONObject(i);
                         HashMap<String, String> item = new HashMap<>();
                         item.put("name", eventsInfo.getString("name"));
-                        item.put("spot", eventsInfo.getString("spot"));
-                        item.put("id", eventsInfo.getString("_id"));
+                        item.put("start", eventsInfo.getString("start"));
+                        item.put("end", eventsInfo.getString("end"));
+                        item.put("location", eventsInfo.getString("location"));
+                        item.put("description", eventsInfo.getString("description"));
                         arraylist.add(item);
                     }
-                    SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), arraylist, R.layout.simplerow, new String[]{"name", "spot", "id"}, new int[]{R.id.rowTextView1, R.id.rowTextView2, R.id.tag});
+                    SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), arraylist, R.layout.simplerow, new String[]{"name", "location", "start", "end", "description"}, new int[]{R.id.rowTextView1, R.id.rowTextView2, R.id.start, R.id.end, R.id.description});
                     if (lv != null) {
                         lv.setAdapter(adapter);
                         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view,
                                                     int position, long id) {
-                                TextView t1 = (TextView) view.findViewById(R.id.tag);
-                                TextView t2 = (TextView) view.findViewById(R.id.rowTextView1);
+                                TextView t1 = (TextView) view.findViewById(R.id.rowTextView1);
+                                TextView t2 = (TextView) view.findViewById(R.id.rowTextView2);
+                                TextView t3 = (TextView) view.findViewById(R.id.start);
+                                TextView t4 = (TextView) view.findViewById(R.id.end);
+                                TextView t5 = (TextView) view.findViewById(R.id.description);
                                 Intent i = new Intent(getApplicationContext(), EventsDetail.class);
-                                i.putExtra("id", t1.getText().toString());
-                                i.putExtra("name", t2.getText().toString());
+                                i.putExtra("name", t1.getText().toString());
+                                i.putExtra("location", t2.getText().toString());
+                                i.putExtra("start", t3.getText().toString());
+                                i.putExtra("end", t4.getText().toString());
+                                i.putExtra("description", t5.getText().toString());
                                 startActivity(i);
                             }
                         });
