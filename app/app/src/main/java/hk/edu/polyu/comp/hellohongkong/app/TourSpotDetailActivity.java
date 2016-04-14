@@ -56,8 +56,8 @@ public class TourSpotDetailActivity extends AppCompatActivity implements Connect
     private ScrollView mvTourSpotDetailScrollView;
     private ImageView mvTourSpotDetailImageView;
     private TextView mvTourSpotDetailNameTextView;
-    private FloatingActionButton mvLocationFAB;
-    private FloatingActionButton mvEventFAB;
+    private LinearLayout mvTourSpotDetailLocationButton;
+    private LinearLayout mvTourSpotDetailEventButton;
     private TextView mvTourSpotDetailDescriptionTextView;
     private LinearLayout mvLocationHeader;
     private RelativeLayout mvMapContainer;
@@ -115,18 +115,18 @@ public class TourSpotDetailActivity extends AppCompatActivity implements Connect
 
         // Tour Spot Name
         mvTourSpotDetailNameTextView = (TextView) findViewById(R.id.tourSpotNameTextView);
-//        mvTourSpotDetailNameTextView.setText();
+        mvTourSpotDetailNameTextView.setText(mvTourSpot.getName());
 
         // Floating Action Button
-        mvLocationFAB = (FloatingActionButton) findViewById(R.id.mapFloatingActionButton);
-        mvLocationFAB.setOnClickListener(new View.OnClickListener() {
+        mvTourSpotDetailLocationButton = (LinearLayout) findViewById(R.id.tourSpotDetailLocationButton);
+        mvTourSpotDetailLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mvTourSpotDetailScrollView.scrollTo(0, (int) mvLocationHeader.getY());
             }
         });
-        mvEventFAB = (FloatingActionButton) findViewById(R.id.eventFloatingActionButton);
-        mvEventFAB.setOnClickListener(new View.OnClickListener() {
+        mvTourSpotDetailEventButton = (LinearLayout) findViewById(R.id.tourSpotDetailEventButton);
+        mvTourSpotDetailEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mvTourSpotDetailScrollView.scrollTo(0, (int) mvEventHeader.getY());
@@ -136,7 +136,7 @@ public class TourSpotDetailActivity extends AppCompatActivity implements Connect
 
         // Tour Spot Description
         mvTourSpotDetailDescriptionTextView = (TextView) findViewById(R.id.tourSpotDetailDescriptionTextView);
-//        mvTourSpotDetailDescriptionTextView.setText();
+        mvTourSpotDetailDescriptionTextView.setText(mvTourSpot.getDescription());
 
         // Location
         mvLocationHeader = (LinearLayout) findViewById(R.id.locationHeader);
