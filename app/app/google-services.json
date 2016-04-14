@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_id": "hello-hong-kong",
+    "project_number": "523191935571",
+    "name": "Hello Hong Kong"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:523191935571:android:796b61fe171e8731",
+        "client_id": "android:hk.edu.polyu.comp.hellohongkong.app",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "hk.edu.polyu.comp.hellohongkong.app",
+          "certificate_hash": []
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "523191935571-t3sc4q1jd3tj7mp09g0f5ggvhcu9t02l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hk.edu.polyu.comp.hellohongkong.app",
+            "certificate_hash": "9886F967872C7BCB0E82A5DD50C70C05C4615E3F"
+          }
+        },
+        {
+          "client_id": "523191935571-1cs86ba46n4mhptg5areb3to36itr54e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 2
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}
