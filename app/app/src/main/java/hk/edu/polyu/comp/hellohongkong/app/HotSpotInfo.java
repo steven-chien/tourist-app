@@ -2,13 +2,19 @@ package hk.edu.polyu.comp.hellohongkong.app;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.RectF;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -34,13 +40,55 @@ public class HotSpotInfo extends AppCompatActivity {
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_DATA = "data";
 
+    private Resources mvResources;
+    private Toolbar mvToolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hot_spot);
+        mvResources = getResources();
+
+        mvToolbar = (Toolbar) findViewById(R.id.myToolbar);
+        setSupportActionBar(mvToolbar);
+        ActionBar lvActionBar = getSupportActionBar();
+        lvActionBar.setDisplayHomeAsUpEnabled(true);
+        if (mvToolbar != null) {
+            mvToolbar.setTitle(mvResources.getString(R.string.app_name));
+        }
 
         new LoadGetTask().execute();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu pMenu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_tour_hot_spot_map, pMenu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem pItem) {
+        switch (pItem.getItemId()) {
+            case R.id.action_bar_hongkong:
+                // Display Hong Kong Island Hot Spot Only
+                return true;
+            case R.id.action_bar_kowloon:
+                // Display Kowloon Hot Spot Only
+                return true;
+            case R.id.action_bar_newterritories:
+                // Display New Territories Hot Spot Only
+                return true;
+            case R.id.action_bar_all:
+                // Display All Hot Spot Only
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(pItem);
+
+        }
     }
 
     /**
@@ -98,7 +146,7 @@ public class HotSpotInfo extends AppCompatActivity {
                             public void onItemClick(AdapterView<?> parent, View view,
                                                     int position, long id) {
                                 TextView t = (TextView)view.findViewById(R.id.title);
-                                Intent i = new Intent(getApplicationContext(), HotSpotDetail.class);
+                                Intent i = new Intent(getApplicationContext(), TourSpotDetailActivity.class);
                                 i.putExtra("id", view.getTag().toString());
                                 i.putExtra("name", t.getText().toString());
                                 startActivity(i);

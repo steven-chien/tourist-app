@@ -3,4 +3,16 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+	
+	<color name="white">#FFF</color>
+    <color name="black">#000</color>
+
+    <color name="mainMap">#FF3300</color>
+    <color name="mainHotSpot">#0DC92C</color>
+    <color name="mainEvent">#F4E018</color>
+    <color name="mainNFC">#4514E5</color>
+
+    <color name="detailHeader">#3A57C2</color>
+    <color name="detailEvent">#AD52C5</color>
+    <color name="detailMap">#49CCAE</color>
 </resources>
