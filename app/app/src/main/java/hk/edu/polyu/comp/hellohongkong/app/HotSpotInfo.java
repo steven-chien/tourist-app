@@ -158,7 +158,6 @@ public class HotSpotInfo extends AppCompatActivity {
                                 TextView t = (TextView)view.findViewById(R.id.title);
                                 Intent i = new Intent(getApplicationContext(), TourSpotDetailActivity.class);
                                 i.putExtra("id", view.getTag().toString());
-                                i.putExtra("name", t.getText().toString());
                                 startActivity(i);
                             }
                         });
