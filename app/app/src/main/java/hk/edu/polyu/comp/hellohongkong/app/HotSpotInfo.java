@@ -4,6 +4,8 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.RectF;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -12,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -40,6 +43,10 @@ public class HotSpotInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hot_spot);
 
+        ProgressBar pb = (ProgressBar) findViewById(R.id.loadingPanel);
+        if (pb != null) {
+            pb.getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
+        }
         new LoadGetTask().execute();
     }
 
@@ -77,6 +84,10 @@ public class HotSpotInfo extends AppCompatActivity {
             //Check for result
             try {
                 if (Objects.equals(json.getString(TAG_STATUS), TAG_SUCCESS)){
+                    ProgressBar pb = (ProgressBar) findViewById(R.id.loadingPanel);
+                    if (pb != null) {
+                        pb.setVisibility(View.GONE);
+                    }
                     System.out.println("json status is successful");
                     JSONArray jsonArray = json.getJSONArray(TAG_DATA);
                     JSONObject spotInfo;

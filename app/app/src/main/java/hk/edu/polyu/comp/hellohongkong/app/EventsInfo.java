@@ -3,6 +3,8 @@ package hk.edu.polyu.comp.hellohongkong.app;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -40,6 +43,10 @@ public class EventsInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.events);
 
+        ProgressBar pb = (ProgressBar) findViewById(R.id.loadingPanel);
+        if (pb != null) {
+            pb.getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
+        }
         new LoadGetTask().execute();
     }
 
@@ -76,6 +83,10 @@ public class EventsInfo extends AppCompatActivity {
             //Check for result
             try {
                 if (Objects.equals(json.getString(TAG_STATUS), TAG_SUCCESS)) {
+                    ProgressBar pb = (ProgressBar) findViewById(R.id.loadingPanel);
+                    if (pb != null) {
+                        pb.setVisibility(View.GONE);
+                    }
                     System.out.println("json status is successful");
                     JSONArray jsonArray = json.getJSONArray(TAG_DATA);
                     JSONObject eventsInfo;
