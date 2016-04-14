@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Hello Hong Kong</string>
     <string name="action_settings">Settings</string>
+
+    <string name="waiting_for_nfc">Waiting for NFC detection</string>
+
     <string name="hot_spot">Hot Spots</string>
     <string name="hot_spot_welcome">Here are the famous tourist sites we recommend to you!!</string>
 	
@@ -24,4 +27,5 @@
         jbsafivhrbv  hvberjhrqi avjrjh vbjhvb erbvhkabuirqi avjrjbsafiesbfhawrbfjhdbsakjvburavbjhdsbvajh abvhrbv hjs hvb
     </string>
     <string name="events_welcome">Here are the famous events around you!</string>
+
 </resources>
