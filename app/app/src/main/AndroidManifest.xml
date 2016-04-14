@@ -86,11 +86,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".HotSpotInfo" />
         </activity>
-
-        <activity
-            android:name=".HotSpotDetail"
-            android:label="Hot spots details" >
-        </activity>
 			
         <activity
             android:name=".EventsInfo"
