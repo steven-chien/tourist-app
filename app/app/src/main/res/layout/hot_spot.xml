@@ -32,6 +32,14 @@
         android:textSize="30sp"
         android:clickable="false" />
 
+    <ProgressBar
+        android:id="@+id/loadingPanel"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="100dp"
+        android:indeterminate="true" />
+
     <GridView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
