@@ -52,7 +52,7 @@ public class NearFieldCommunicationActivity extends AppCompatActivity {
         if (!mNfcAdapter.isEnabled()) {
             mNfcIdTextView.setText("NFC is disabled. Please switch it on and enter this application again.");
         } else {
-            mNfcIdTextView.setText("NFC is ready. Place your NFC tag towards your device.");
+            mNfcIdTextView.setText("NFC is ready. Place the NFC tag towards your device.");
         }
 
         handleIntent(getIntent());

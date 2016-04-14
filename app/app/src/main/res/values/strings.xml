@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HelloHongkong</string>
+    <string name="app_name">Hello Hong Kong</string>
     <string name="action_settings">Settings</string>
     <string name="waiting_for_nfc">Waiting for NFC detection</string>
 </resources>

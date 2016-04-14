@@ -9,13 +9,31 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="hk.edu.polyu.comp.hellohongkong.app.NearFieldCommunicationActivity">
 
-    <TextView
-        android:id="@+id/nfcIdTextView"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/waiting_for_nfc"
-        android:textSize="25dp"/>
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:src="@drawable/nfc_icon"
+            android:layout_marginBottom="20dp"
+            />
+
+        <TextView
+            android:id="@+id/nfcIdTextView"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/waiting_for_nfc"
+            android:textAlignment="center"
+            android:textSize="25dp"/>
+
+    </LinearLayout>
 
 </RelativeLayout>
