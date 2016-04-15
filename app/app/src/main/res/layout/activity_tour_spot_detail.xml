@@ -210,11 +210,15 @@
                 android:id="@+id/tourSpotDetailListView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/tourSpotDetailScrollView"
                 android:dividerHeight="10dp"
                 android:divider="#00000000"
                 android:layout_gravity="center_horizontal" />
+
         </LinearLayout>
 
     </ScrollView>
+
+
 
 </RelativeLayout>

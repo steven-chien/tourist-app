@@ -168,20 +168,25 @@ public class TourSpotDetailActivity extends AppCompatActivity implements Connect
         // Event
         mvEventHeader = (LinearLayout) findViewById(R.id.eventHeader);
         mvEventListView = (ListView) findViewById(R.id.tourSpotDetailListView);
-        setupEventList();
+        int EventListSize = setupEventList();
+        int linePX = dpToPx(10);
+        ViewGroup.LayoutParams lvEventListViewParams = mvEventListView.getLayoutParams();
+        lvEventListViewParams.height = (183 + linePX) * EventListSize;
     }
 
-    public void setupEventList() {
+    public int setupEventList() {
         ArrayList<Event> lvEventList = svEventManager.getEventList();
         ArrayList<HashMap<String, String>> lvArrayList = new ArrayList<>();
         for (Event lvEvent : lvEventList) {
-            HashMap<String, String> lvItem = new HashMap<>();
-            lvItem.put("name", lvEvent.getName());
-            lvItem.put("start", Integer.toString(lvEvent.getStartTime()));
-            lvItem.put("end", Integer.toString(lvEvent.getEndTime()));
-            lvItem.put("location", lvEvent.getLocation());
-            lvItem.put("description", lvEvent.getDescription());
-            lvArrayList.add(lvItem);
+            if (mvTourSpot.getName().equals(lvEvent.getLocation())) {
+                HashMap<String, String> lvItem = new HashMap<>();
+                lvItem.put("name", lvEvent.getName());
+                lvItem.put("start", Integer.toString(lvEvent.getStartTime()));
+                lvItem.put("end", Integer.toString(lvEvent.getEndTime()));
+                lvItem.put("location", lvEvent.getLocation());
+                lvItem.put("description", lvEvent.getDescription());
+                lvArrayList.add(lvItem);
+            }
         }
         SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), lvArrayList, R.layout.simplerow, new String[]{"name", "location", "start", "end", "description"}, new int[]{R.id.rowTextView1, R.id.rowTextView2, R.id.start, R.id.end, R.id.description});
         if (mvEventListView != null) {
@@ -205,6 +210,8 @@ public class TourSpotDetailActivity extends AppCompatActivity implements Connect
                 }
             });
         }
+
+        return lvArrayList.size();
     }
 
     public void addMarkerOnMap(String pTitle, double pLatitude, double pLongitude, float pColor) {
@@ -271,5 +278,11 @@ public class TourSpotDetailActivity extends AppCompatActivity implements Connect
         mvGoogleApiClient.disconnect();
         System.out.println("onStop disconnect");
         super.onStop();
+    }
+
+    public int dpToPx(int dp) {
+        DisplayMetrics displayMetrics = mvResources.getDisplayMetrics();
+        int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+        return px;
     }
 }
