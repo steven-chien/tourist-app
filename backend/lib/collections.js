@@ -3,6 +3,7 @@ Hotspot.remove({});
 
 var hotspot = [
 {
+"id": 1,
 "name": "dolor",
 "region": "Hong Kong",
 "coordinate": {
@@ -15,6 +16,7 @@ var hotspot = [
 
 },
 {
+"id": 2,
 "name": "adipisicing",
 "region": "Hong Kong",
 "coordinate": {
@@ -27,8 +29,9 @@ var hotspot = [
 
 },
 {
+"id": 3,
 "name": "elit",
-"region": "Hong Kong",
+"region": "Kowloon",
 "coordinate": {
 "lat": 22.293678,
 "lon": 114.16717
@@ -39,6 +42,7 @@ var hotspot = [
 
 },
 {
+"id": 4,
 "name": "adipisicing",
 "region": "Hong Kong",
 "coordinate": {
@@ -51,6 +55,7 @@ var hotspot = [
 
 },
 {
+"id": 5,
 "name": "incididunt",
 "region": "Hong Kong",
 "coordinate": {
@@ -69,12 +74,12 @@ _.each(hotspot, function(doc) {
 
 });
 
-Hotspot.insert({ name: "The Peak", region: "Hong Kong", coordinate: { lat: 22.2758829, lon: 114.1367558 }, description: "With some seven million visitors every year, the Peak is a major tourist attraction of Hong Kong.[3] It offers spectacular views of the city and its harbours. The viewing deck also has coin operated telescopes that the visitors can use to enjoy the cityscape. The number of visitors led to the construction of two major leisure and shopping centres, the Peak Tower and the Peak Galleria, situated adjacent to each other.", preview: "https://lh6.googleusercontent.com/-ue4q1EUUT50/Vjx-ZX7rfCI/AAAAAAAAEW0/72dGyW7kIf4/s408-k-no/" });
-Hotspot.insert({ name: "Ocean Park", region: "Hong Kong", coordinate: { lat: 22.2466607, lon: 114.1735299 }, description: "Opened in 1977, Ocean Park Hong Kong is a marine-life theme park featuring animal exhibits, thrill rides and shows. In 2012, its impressive ability to offer guests a world-class experience that blends entertainment with education and conservation was confirmed when it became the first Asian winner of the biannual Applause Award, the most prestigious award in the amusement and theme park industry.", preview: "http://www.discoverhongkong.com/eng/images/see-do/highlight-attractions/large/1.1.1.7-Ocean-Park_03b.jpg" });
-Hotspot.insert({ name: "LegCo Building", region: "Hong Kong", coordinate: { lat: 22.2809605, lon: 114.1581015 }, description: "The Hong Kong government is dedicated to knocking down just about anything that’s more than 20 years old. LegCo has survived because it’s where the government sat for much of the last hundred years and is now the Court of Final Appeal. The building is in grand British colonial style with sturdy granite columns and gilded verandas; a powerful statement by the men in mustaches that once ran the city.", preview: "https://lh6.googleusercontent.com/proxy/IMq5frdYPLnuug3BnVrSx5W9utgcb_s2Uqw_XfvZjNhEbqOemBNTDI_IivU9LYfCiLed1YHS7yqVEz3O13WzRzXETrtPwPgZGXplmcsHOmsQyXdWpdaP6d_m3qttOB7KZi9XMlWa6YSSVCjGX21hlB7qaaEE1w=w408-h271" });
-Hotspot.insert({ name: "Clock Tower", region: "Kowloon", coordinate: { lat: 22.293678, lon: 114.16717 }, description: "Standing 44-metres tall, the old Clock Tower was erected in 1915 as part of the Kowloon–Canton Railway terminus. The once-bustling station is long gone, but this red brick and granite tower, now preserved as a Declared Monument, survives as an elegant reminder of the Age of Steam.", preview: "http://www.discoverhongkong.com/eng/images/see-do/highlight-attractions/large/1.1.1.4-Clock-Tower_03.jpg" });
-Hotspot.insert({ name: "Tsim Sha Tsui Promenade", region: "Kowloon", coordinate: { lat: 22.2973554, lon: 114.1773443 }, description: "Starting at the colonial-era Clock Tower and stretching all the way to Hung Hom, a stroll along the Tsim Sha Tsui Promenade takes one past the Hong Kong Cultural Centre and the Hong Kong Space Museum.", preview: "http://www.discoverhongkong.com/eng/images/see-do/highlight-attractions/large/1.1.1.6-Tsim-Sha-Tsui-Promende_03.jpg" });
-Hotspot.insert({ name: "Chang Chau", region: "New Territories", coordinate: { lat: 22.2095327, lon: 114.0204475 }, description: "Cheung Chau is an island 10 kilometres southwest of Hong Kong Island. It is nicknamed the 'dumbbell island' due to its shape.", preview: "https://lh6.googleusercontent.com/proxy/KD3RAGVKSjs4SBrIh6Hb_p8BxLNiqF7JW79Igomf8kZFvlbRKx2XgAxEs3cgBT3VDUhwZ4Bkl-36Han154idrqu0J8OD8Q=w408-h306" });
+Hotspot.insert({ id: 6, name: "The Peak", region: "Hong Kong", coordinate: { lat: 22.2758829, lon: 114.1367558 }, description: "With some seven million visitors every year, the Peak is a major tourist attraction of Hong Kong.[3] It offers spectacular views of the city and its harbours. The viewing deck also has coin operated telescopes that the visitors can use to enjoy the cityscape. The number of visitors led to the construction of two major leisure and shopping centres, the Peak Tower and the Peak Galleria, situated adjacent to each other.", preview: "https://lh6.googleusercontent.com/-ue4q1EUUT50/Vjx-ZX7rfCI/AAAAAAAAEW0/72dGyW7kIf4/s408-k-no/" });
+Hotspot.insert({ id: 7, name: "Ocean Park", region: "Hong Kong", coordinate: { lat: 22.2466607, lon: 114.1735299 }, description: "Opened in 1977, Ocean Park Hong Kong is a marine-life theme park featuring animal exhibits, thrill rides and shows. In 2012, its impressive ability to offer guests a world-class experience that blends entertainment with education and conservation was confirmed when it became the first Asian winner of the biannual Applause Award, the most prestigious award in the amusement and theme park industry.", preview: "http://www.discoverhongkong.com/eng/images/see-do/highlight-attractions/large/1.1.1.7-Ocean-Park_03b.jpg" });
+Hotspot.insert({ id: 8, name: "LegCo Building", region: "Hong Kong", coordinate: { lat: 22.2809605, lon: 114.1581015 }, description: "The Hong Kong government is dedicated to knocking down just about anything that’s more than 20 years old. LegCo has survived because it’s where the government sat for much of the last hundred years and is now the Court of Final Appeal. The building is in grand British colonial style with sturdy granite columns and gilded verandas; a powerful statement by the men in mustaches that once ran the city.", preview: "https://lh6.googleusercontent.com/proxy/IMq5frdYPLnuug3BnVrSx5W9utgcb_s2Uqw_XfvZjNhEbqOemBNTDI_IivU9LYfCiLed1YHS7yqVEz3O13WzRzXETrtPwPgZGXplmcsHOmsQyXdWpdaP6d_m3qttOB7KZi9XMlWa6YSSVCjGX21hlB7qaaEE1w=w408-h271" });
+Hotspot.insert({ id: 9, name: "Clock Tower", region: "Kowloon", coordinate: { lat: 22.293678, lon: 114.16717 }, description: "Standing 44-metres tall, the old Clock Tower was erected in 1915 as part of the Kowloon–Canton Railway terminus. The once-bustling station is long gone, but this red brick and granite tower, now preserved as a Declared Monument, survives as an elegant reminder of the Age of Steam.", preview: "http://www.discoverhongkong.com/eng/images/see-do/highlight-attractions/large/1.1.1.4-Clock-Tower_03.jpg" });
+Hotspot.insert({ id: 10, name: "Tsim Sha Tsui Promenade", region: "Kowloon", coordinate: { lat: 22.2973554, lon: 114.1773443 }, description: "Starting at the colonial-era Clock Tower and stretching all the way to Hung Hom, a stroll along the Tsim Sha Tsui Promenade takes one past the Hong Kong Cultural Centre and the Hong Kong Space Museum.", preview: "http://www.discoverhongkong.com/eng/images/see-do/highlight-attractions/large/1.1.1.6-Tsim-Sha-Tsui-Promende_03.jpg" });
+Hotspot.insert({ id: 11, name: "Chang Chau", region: "New Territories", coordinate: { lat: 22.2095327, lon: 114.0204475 }, description: "Cheung Chau is an island 10 kilometres southwest of Hong Kong Island. It is nicknamed the 'dumbbell island' due to its shape.", preview: "https://lh6.googleusercontent.com/proxy/KD3RAGVKSjs4SBrIh6Hb_p8BxLNiqF7JW79Igomf8kZFvlbRKx2XgAxEs3cgBT3VDUhwZ4Bkl-36Han154idrqu0J8OD8Q=w408-h306" });
 
 Promotion = new Mongo.Collection('promotion');
 Promotion.remove({});
@@ -87,6 +92,15 @@ Events.remove({});
 
 var event_data = [
 {
+"id": 0,
+"name": "A Symphony of Lights",
+"start": Date.parse("2016-04-22 20:00"),
+"end": Date.parse("2016-04-22 21:00"),
+"location": "Avenue of Star",
+"description": "largest light shows in the world."
+},
+{
+"id": 1,
 "name": "ea",
 "start": Date.parse("2016-04-12 04:39"),
 "end": Date.parse("2016-04-20 01:35"),
@@ -95,6 +109,7 @@ var event_data = [
 
 },
 {
+"id": 2,
 "name": "culpa",
 "start": Date.parse("2016-04-06 06:07"),
 "end": Date.parse("2016-04-17 09:59"),
@@ -103,6 +118,7 @@ var event_data = [
 
 },
 {
+"id": 3,
 "name": "reprehenderit",
 "start": Date.parse("2016-04-07 02:13"),
 "end": Date.parse("2016-04-19 11:43"),
@@ -111,6 +127,7 @@ var event_data = [
 
 },
 {
+"id": 4,
 "name": "officia",
 "start": Date.parse("2016-04-02 10:20"),
 "end": Date.parse("2016-04-21 01:38"),
@@ -119,6 +136,7 @@ var event_data = [
 
 },
 {
+"id": 5,
 "name": "nulla",
 "start": Date.parse("2016-04-01 10:04"),
 "end": Date.parse("2016-04-26 11:03"),
@@ -129,7 +147,6 @@ var event_data = [
 
 _.each(event_data, function(doc) {
 	    Events.insert(doc);
-
 });
 
 Comments = new Mongo.Collection('comments');
