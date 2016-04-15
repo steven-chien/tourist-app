@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.sql.Date;
@@ -23,6 +24,7 @@ public class EventsDetail extends AppCompatActivity {
 
     String name, location, description;
     Date startTime, endTime;
+    Button mAddCalendarButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,16 @@ public class EventsDetail extends AppCompatActivity {
         TextView startTextView = (TextView) findViewById(R.id.eventDetailsStartTimeTextView);
         TextView endTextView = (TextView) findViewById(R.id.eventDetailsEndTimeTextView);
         TextView descriptionTextView = (TextView) findViewById(R.id.eventDetailsDescriptionTextView);
+        mAddCalendarButton = (Button) findViewById(R.id.addToCalendar);
+
+        if(mAddCalendarButton != null) {
+            mAddCalendarButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    buttonOpenCalendarClick(v);
+                }
+            });
+        }
 
         if (nameTextView != null) {
             name = getIntent().getStringExtra("name");

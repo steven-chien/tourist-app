@@ -120,8 +120,8 @@ public class ServerRequestManager {
                 {
                     JSONObject lvEventJSONObject = lvJSONArray.getJSONObject(i);
                     String lvName = lvEventJSONObject.getString("name");
-                    int lvStartTime = lvEventJSONObject.getInt("start");
-                    int lvEndTime = lvEventJSONObject.getInt("end");
+                    long lvStartTime = lvEventJSONObject.getLong("start");
+                    long lvEndTime = lvEventJSONObject.getLong("end");
                     String lvLocation = lvEventJSONObject.getString("location");
                     String lvDescription = lvEventJSONObject.getString("description");
                     String lvID = Integer.toString(lvEventJSONObject.getInt("id"));
