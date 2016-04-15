@@ -177,8 +177,8 @@ public class TourSpotDetailActivity extends AppCompatActivity implements Connect
         for (Event lvEvent : lvEventList) {
             HashMap<String, String> lvItem = new HashMap<>();
             lvItem.put("name", lvEvent.getName());
-            lvItem.put("start", Integer.toString(lvEvent.getStartTime()));
-            lvItem.put("end", Integer.toString(lvEvent.getEndTime()));
+            lvItem.put("start", Long.toString(lvEvent.getStartTime()));
+            lvItem.put("end", Long.toString(lvEvent.getEndTime()));
             lvItem.put("location", lvEvent.getLocation());
             lvItem.put("description", lvEvent.getDescription());
             lvArrayList.add(lvItem);

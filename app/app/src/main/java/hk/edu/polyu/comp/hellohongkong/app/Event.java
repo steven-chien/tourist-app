@@ -6,12 +6,12 @@ package hk.edu.polyu.comp.hellohongkong.app;
 public class Event {
     private String mvID;
     private String mvName;
-    private int mvStartTime;
-    private int mvEndTime;
+    private long mvStartTime;
+    private long mvEndTime;
     private String mvLocation;
     private String mvDescription;
 
-    public Event(String pID, String pName, int pStartTime, int pEndTime, String pLocation, String pDescription) {
+    public Event(String pID, String pName, long pStartTime, long pEndTime, String pLocation, String pDescription) {
         mvID = pID;
         mvName = pName;
         mvStartTime = pStartTime;
@@ -26,10 +26,10 @@ public class Event {
     public String getName() {
         return mvName;
     }
-    public int getStartTime() {
+    public long getStartTime() {
         return mvStartTime;
     }
-    public int getEndTime() {
+    public long getEndTime() {
         return mvEndTime;
     }
     public String getLocation() {
