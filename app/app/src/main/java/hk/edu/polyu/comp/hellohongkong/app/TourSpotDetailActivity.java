@@ -2,6 +2,7 @@ package hk.edu.polyu.comp.hellohongkong.app;
 
 import android.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,10 +15,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -32,6 +36,10 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 interface OnImageDownloadCompleteEventListener {
     public void OnImageDownloadComplete(Bitmap bitmap);
 }
@@ -40,6 +48,7 @@ public class TourSpotDetailActivity extends AppCompatActivity implements Connect
     private Resources mvResources;
     private ServerRequestManager svServerRequestManager;
     private TourSpotManager svTourSpotManager;
+    private EventManager svEventManager;
     private TourSpot mvTourSpot;
 
     private int mvScreenWidth = 0;
@@ -62,6 +71,7 @@ public class TourSpotDetailActivity extends AppCompatActivity implements Connect
     private LinearLayout mvLocationHeader;
     private RelativeLayout mvMapContainer;
     private LinearLayout mvEventHeader;
+    private ListView mvEventListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +81,7 @@ public class TourSpotDetailActivity extends AppCompatActivity implements Connect
         mvResources = getResources();
         svServerRequestManager = ServerRequestManager.getInstance();
         svTourSpotManager = TourSpotManager.getInstance();
+        svEventManager = EventManager.getInstance();
 
         Bundle lvExtra = getIntent().getExtras();
         if (lvExtra != null) {
@@ -156,7 +167,44 @@ public class TourSpotDetailActivity extends AppCompatActivity implements Connect
 
         // Event
         mvEventHeader = (LinearLayout) findViewById(R.id.eventHeader);
+        mvEventListView = (ListView) findViewById(R.id.tourSpotDetailListView);
+        setupEventList();
+    }
 
+    public void setupEventList() {
+        ArrayList<Event> lvEventList = svEventManager.getEventList();
+        ArrayList<HashMap<String, String>> lvArrayList = new ArrayList<>();
+        for (Event lvEvent : lvEventList) {
+            HashMap<String, String> lvItem = new HashMap<>();
+            lvItem.put("name", lvEvent.getName());
+            lvItem.put("start", Integer.toString(lvEvent.getStartTime()));
+            lvItem.put("end", Integer.toString(lvEvent.getEndTime()));
+            lvItem.put("location", lvEvent.getLocation());
+            lvItem.put("description", lvEvent.getDescription());
+            lvArrayList.add(lvItem);
+        }
+        SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), lvArrayList, R.layout.simplerow, new String[]{"name", "location", "start", "end", "description"}, new int[]{R.id.rowTextView1, R.id.rowTextView2, R.id.start, R.id.end, R.id.description});
+        if (mvEventListView != null) {
+            mvEventListView.setAdapter(adapter);
+            mvEventListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view,
+                                        int position, long id) {
+                    TextView t1 = (TextView) view.findViewById(R.id.rowTextView1);
+                    TextView t2 = (TextView) view.findViewById(R.id.rowTextView2);
+                    TextView t3 = (TextView) view.findViewById(R.id.start);
+                    TextView t4 = (TextView) view.findViewById(R.id.end);
+                    TextView t5 = (TextView) view.findViewById(R.id.description);
+                    Intent i = new Intent(getApplicationContext(), EventsDetail.class);
+                    i.putExtra("name", t1.getText().toString());
+                    i.putExtra("location", t2.getText().toString());
+                    i.putExtra("start", t3.getText().toString());
+                    i.putExtra("end", t4.getText().toString());
+                    i.putExtra("description", t5.getText().toString());
+                    startActivity(i);
+                }
+            });
+        }
     }
 
     public void addMarkerOnMap(String pTitle, double pLatitude, double pLongitude, float pColor) {

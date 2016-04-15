@@ -23,15 +23,19 @@ import java.util.concurrent.Callable;
  */
 public class ServerRequestManager {
     private final String mvHotSpotInfoURL = "https://46.101.253.211/api/hotspot";
+    private final String mvEventInfoURL = "https://46.101.253.211/api/events";
     private static ServerRequestManager svServerRequestManager;
     private TourSpotManager svTourSpotManager;
+    private EventManager svEventManager;
     private JSONParser mvJSONParser;
     private ImageUtil mvImageUtil;
 
     private JSONObject mvTourSpotJSONObject;
+    private JSONObject mvEventJSONObject;
 
     private ServerRequestManager() {
         svTourSpotManager = TourSpotManager.getInstance();
+        svEventManager = EventManager.getInstance();
         mvJSONParser = new JSONParser();
     }
 
@@ -85,24 +89,56 @@ public class ServerRequestManager {
             catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
 
-//            ArrayList<TourSpot> lvTourSpotList = svTourSpotManager.getTourSpotList();
-//            for (TourSpot lvTourSpot : lvTourSpotList) {
-//                System.out.println("ID: " + lvTourSpot.getID());
-//                System.out.println("Name: " + lvTourSpot.getName());
-//                System.out.println("Latitude: " + lvTourSpot.getLatitude());
-//                System.out.println("Longitude: " + lvTourSpot.getLongitude());
-//                System.out.println("HK Region: " + lvTourSpot.getHKRegion());
-//                System.out.println("Description: " + lvTourSpot.getDescription());
-//                System.out.println("Image URL: " + lvTourSpot.getImageURL());
-//                System.out.println();
-//            }
+    public void requestEventInfo() {
+        new DownloadEvent().execute();
+    }
+
+    private class DownloadEvent extends AsyncTask<String, Void, String> {
+
+        public DownloadEvent() {
+
+        }
+
+        @Override
+        protected String doInBackground(String... pURLs) {
+            try {
+                mvEventJSONObject = mvJSONParser.makeHttpRequest(mvEventInfoURL, "GET");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String pResult) {
+            try {
+                JSONArray lvJSONArray = mvEventJSONObject.getJSONArray("data");
+                for (int i=0; i < lvJSONArray.length(); i++)
+                {
+                    JSONObject lvEventJSONObject = lvJSONArray.getJSONObject(i);
+                    String lvName = lvEventJSONObject.getString("name");
+                    int lvStartTime = lvEventJSONObject.getInt("start");
+                    int lvEndTime = lvEventJSONObject.getInt("end");
+                    String lvLocation = lvEventJSONObject.getString("location");
+                    String lvDescription = lvEventJSONObject.getString("description");
+                    String lvID = lvEventJSONObject.getString("_id");
+
+                    Event lvEvent = new Event(lvID, lvName, lvStartTime, lvEndTime, lvLocation, lvDescription);
+                    svEventManager.addEvent(lvEvent);
+                }
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public void requestImage(String pURL, OnImageDownloadCompleteEventListener callback) {
         mvImageUtil = new ImageUtil();
-        Bitmap lvOutputBitmap = null;
+        Bitmap lvOutputBitmap;
         try {
             lvOutputBitmap = mvImageUtil.execute(pURL).get();
             callback.OnImageDownloadComplete(lvOutputBitmap);
@@ -110,44 +146,5 @@ public class ServerRequestManager {
         catch (Exception e) {
             e.printStackTrace();
         }
-//        DownloadImage lvDownloadImage = new DownloadImage(pImageView);
-//        lvDownloadImage.execute(pURL);
-//        return lvDownloadImage.getBitmap();
     }
-
-//    private class DownloadImage extends AsyncTask<String, Void, Bitmap> {
-//        ImageView mvImageView;
-//        Bitmap mvOutputBitmap;
-//
-//        public DownloadImage(ImageView pImageView) {
-//            mvImageView = pImageView;
-//        }
-//
-//        @Override
-//        protected Bitmap doInBackground(String... pURLs) {
-//            String lvURLDisplay = pURLs[0];
-//            Bitmap lvOutputBitmap = null;
-//            try {
-////                URL lvURL = new URL(lvURLDisplay);
-////                HttpURLConnection lvHttpURLConnection = (HttpURLConnection) lvURL.openConnection();
-////                InputStream lvInputStream = new BufferedInputStream(lvHttpURLConnection.getInputStream());
-//
-//                InputStream lvInputStream = new java.net.URL(lvURLDisplay).openStream();
-//                lvOutputBitmap = BitmapFactory.decodeStream(lvInputStream);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            mvOutputBitmap = lvOutputBitmap;
-//            return lvOutputBitmap;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Bitmap pResult) {
-//            mvImageView.setImageBitmap(pResult);
-//        }
-//
-//        public Bitmap getBitmap() {
-//            return mvOutputBitmap;
-//        }
-//    }
 }
