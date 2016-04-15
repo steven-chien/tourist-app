@@ -65,8 +65,8 @@ public class TourSpotDetailActivity extends AppCompatActivity implements Connect
     private ScrollView mvTourSpotDetailScrollView;
     private ImageView mvTourSpotDetailImageView;
     private TextView mvTourSpotDetailNameTextView;
-    private LinearLayout mvTourSpotDetailLocationButton;
-    private LinearLayout mvTourSpotDetailEventButton;
+    private RelativeLayout mvTourSpotDetailLocationButton;
+    private RelativeLayout mvTourSpotDetailEventButton;
     private TextView mvTourSpotDetailDescriptionTextView;
     private LinearLayout mvLocationHeader;
     private RelativeLayout mvMapContainer;
@@ -129,14 +129,14 @@ public class TourSpotDetailActivity extends AppCompatActivity implements Connect
         mvTourSpotDetailNameTextView.setText(mvTourSpot.getName());
 
         // Floating Action Button
-        mvTourSpotDetailLocationButton = (LinearLayout) findViewById(R.id.tourSpotDetailLocationButton);
+        mvTourSpotDetailLocationButton = (RelativeLayout) findViewById(R.id.tourSpotDetailLocationButton);
         mvTourSpotDetailLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mvTourSpotDetailScrollView.scrollTo(0, (int) mvLocationHeader.getY());
             }
         });
-        mvTourSpotDetailEventButton = (LinearLayout) findViewById(R.id.tourSpotDetailEventButton);
+        mvTourSpotDetailEventButton = (RelativeLayout) findViewById(R.id.tourSpotDetailEventButton);
         mvTourSpotDetailEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -59,7 +59,7 @@ public class NearFieldCommunicationActivity extends AppCompatActivity {
 
         // Make sure the device supports NFC, otherwise, say goodbye ;)
         if (mNfcAdapter == null) {
-            Toast.makeText(this, "This device doesn't support NFC. Bye!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "This device doesn't support NFC.", Toast.LENGTH_LONG).show();
             finish();
             return;
         }
