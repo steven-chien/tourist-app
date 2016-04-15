@@ -38,11 +38,11 @@ public class EventsDetail extends AppCompatActivity {
             mvToolbar.setTitle(mvResources.getString(R.string.app_name));
         }
 
-        TextView nameTextView = (TextView) findViewById(R.id.eventNameTextView);
-        TextView locationTextView = (TextView) findViewById(R.id.locationTextView);
-        TextView startTextView = (TextView) findViewById(R.id.startTextView);
-        TextView endTextView = (TextView) findViewById(R.id.endTextView);
-        TextView descriptionTextView = (TextView) findViewById(R.id.descriptionTextView);
+        TextView nameTextView = (TextView) findViewById(R.id.eventDetailEventNameTextView);
+        TextView locationTextView = (TextView) findViewById(R.id.eventDetailsLocationTextView);
+        TextView startTextView = (TextView) findViewById(R.id.eventDetailsStartTimeTextView);
+        TextView endTextView = (TextView) findViewById(R.id.eventDetailsEndTimeTextView);
+        TextView descriptionTextView = (TextView) findViewById(R.id.eventDetailsDescriptionTextView);
 
         if (nameTextView != null) {
             name = getIntent().getStringExtra("name");

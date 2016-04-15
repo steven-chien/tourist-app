@@ -4,14 +4,17 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Resources;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.os.AsyncTask;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,8 +27,12 @@ public class NearFieldCommunicationActivity extends AppCompatActivity {
     public static final String MIME_TEXT_PLAIN = "text/plain";
     public static final String ACTIVITY_TAG = "NFCActivity";
 
+    private Resources mvResources;
+
     private TextView mNfcIdTextView;
     private NfcAdapter mNfcAdapter;
+
+    private Toolbar mvToolbar;
 
 
     /*
@@ -37,6 +44,15 @@ public class NearFieldCommunicationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_near_field_communication);
+        mvResources = getResources();
+
+        mvToolbar = (Toolbar) findViewById(R.id.myToolbar);
+        setSupportActionBar(mvToolbar);
+        ActionBar lvActionBar = getSupportActionBar();
+        lvActionBar.setDisplayHomeAsUpEnabled(true);
+        if (mvToolbar != null) {
+            mvToolbar.setTitle(mvResources.getString(R.string.app_name));
+        }
 
         mNfcIdTextView = (TextView) findViewById(R.id.nfcIdTextView);
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);

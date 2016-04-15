@@ -188,7 +188,9 @@ public class TourHotSpotMapActivity extends AppCompatActivity implements Connect
 
     @Override
     public boolean onOptionsItemSelected(MenuItem pItem) {
-        mvMap.clear();
+        if (mvMap != null) {
+            mvMap.clear();
+        }
         switch (pItem.getItemId()) {
             case R.id.action_bar_hongkong:
                 System.out.println("Hong Kong");

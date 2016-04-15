@@ -80,7 +80,7 @@ public class ServerRequestManager {
                     double lvLongitude = lvCoordinate.getDouble("lon");
                     String lvDescription = lvTourSpotJSONObject.getString("description");
                     String lvImageURL = lvTourSpotJSONObject.getString("preview");
-                    String lvID = lvTourSpotJSONObject.getString("_id");
+                    String lvID = Integer.toString(lvTourSpotJSONObject.getInt("id"));
 
                     TourSpot lvTourSpot = new TourSpot(lvID, lvName, lvLatitude, lvLongitude, lvHKRegion, lvDescription, lvImageURL);
                     svTourSpotManager.addTourSpot(lvTourSpot);
@@ -124,7 +124,7 @@ public class ServerRequestManager {
                     int lvEndTime = lvEventJSONObject.getInt("end");
                     String lvLocation = lvEventJSONObject.getString("location");
                     String lvDescription = lvEventJSONObject.getString("description");
-                    String lvID = lvEventJSONObject.getString("_id");
+                    String lvID = Integer.toString(lvEventJSONObject.getInt("id"));
 
                     Event lvEvent = new Event(lvID, lvName, lvStartTime, lvEndTime, lvLocation, lvDescription);
                     svEventManager.addEvent(lvEvent);
