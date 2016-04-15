@@ -84,7 +84,7 @@ public class NearFieldCommunicationActivity extends AppCompatActivity {
     private void handleIntent(Intent intent) {
         String action = intent.getAction();
 
-        if (action.equals(NfcAdapter.ACTION_NDEF_DISCOVERED)) {
+        if (action != null && action.equals(NfcAdapter.ACTION_NDEF_DISCOVERED)) {
             String type = intent.getType();
 
             if (type.equals(MIME_TEXT_PLAIN)) {
@@ -189,7 +189,10 @@ public class NearFieldCommunicationActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             if (result != null) {
-                mNfcIdTextView.setText(result);
+                Intent intent = new Intent(NearFieldCommunicationActivity.this, TourSpotDetailActivity.class);
+                intent.putExtra("id", result);
+                startActivity(intent);
+                NearFieldCommunicationActivity.this.finish();
             }
         }
     }

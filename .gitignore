@@ -1,2 +1,4 @@
 .meteor/local
 .meteor/meteorite
+app/.idea/gradle.xml
+app/.idea/misc.xml
