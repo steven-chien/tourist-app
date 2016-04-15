@@ -1,79 +1,6 @@
 Hotspot = new Mongo.Collection('hotspot');
 Hotspot.remove({});
 
-var hotspot = [
-{
-"id": 1,
-"name": "dolor",
-"region": "Hong Kong",
-"coordinate": {
-"lat": 22.293678,
-"lon": 114.16717
-
-},
-"description": "Minim culpa laboris sunt occaecat qui. Sit officia consequat proident culpa voluptate ad. Commodo ipsum duis ad occaecat duis sint et magna mollit ex pariatur cupidatat non reprehenderit. Eu ut mollit in fugiat cupidatat ex labore excepteur sint. Sint labore eiusmod consequat ipsum ex pariatur. Fugiat eiusmod culpa ullamco tempor irure nulla proident ut quis. Sit ullamco reprehenderit incididunt velit tempor.\r\n",
-"preview": "https://lh6.googleusercontent.com/proxy/KD3RAGVKSjs4SBrIh6Hb_p8BxLNiqF7JW79Igomf8kZFvlbRKx2XgAxEs3cgBT3VDUhwZ4Bkl-36Han154idrqu0J8OD8Q=w408-h306"
-
-},
-{
-"id": 2,
-"name": "adipisicing",
-"region": "Hong Kong",
-"coordinate": {
-"lat": 22.293678,
-"lon": 114.16717
-
-},
-"description": "Qui pariatur Lorem exercitation mollit anim eiusmod consequat aliquip ipsum anim do minim veniam. Culpa aute ex commodo culpa consequat reprehenderit proident cillum. Deserunt exercitation adipisicing magna ipsum ullamco sunt labore cupidatat velit ut velit dolore enim voluptate. Qui velit ullamco dolor quis. Aliqua consectetur ut ex nostrud proident labore laboris consequat et.\r\n",
-"preview": "https://lh6.googleusercontent.com/proxy/KD3RAGVKSjs4SBrIh6Hb_p8BxLNiqF7JW79Igomf8kZFvlbRKx2XgAxEs3cgBT3VDUhwZ4Bkl-36Han154idrqu0J8OD8Q=w408-h306"
-
-},
-{
-"id": 3,
-"name": "elit",
-"region": "Kowloon",
-"coordinate": {
-"lat": 22.293678,
-"lon": 114.16717
-
-},
-"description": "Velit occaecat labore ea occaecat dolor Lorem. Occaecat consequat mollit eu ex magna proident tempor anim consectetur anim magna. Labore officia commodo proident ea ex et in sit Lorem esse deserunt cupidatat. Commodo labore veniam magna velit. Ea ad sint nostrud sit exercitation eiusmod reprehenderit veniam consequat magna officia. Magna laborum laboris labore cupidatat sunt in incididunt. Adipisicing ullamco elit eu ullamco culpa deserunt eiusmod irure mollit irure.\r\n",
-"preview": "https://lh6.googleusercontent.com/proxy/KD3RAGVKSjs4SBrIh6Hb_p8BxLNiqF7JW79Igomf8kZFvlbRKx2XgAxEs3cgBT3VDUhwZ4Bkl-36Han154idrqu0J8OD8Q=w408-h306"
-
-},
-{
-"id": 4,
-"name": "adipisicing",
-"region": "Hong Kong",
-"coordinate": {
-"lat": 22.293678,
-"lon": 114.16717
-
-},
-"description": "Cillum quis quis do ipsum mollit. Commodo aliquip reprehenderit labore reprehenderit irure dolor deserunt aliqua ullamco consectetur deserunt commodo velit. Commodo ad sit duis tempor ipsum amet Lorem irure.\r\n",
-"preview": "https://lh6.googleusercontent.com/proxy/KD3RAGVKSjs4SBrIh6Hb_p8BxLNiqF7JW79Igomf8kZFvlbRKx2XgAxEs3cgBT3VDUhwZ4Bkl-36Han154idrqu0J8OD8Q=w408-h306"
-
-},
-{
-"id": 5,
-"name": "incididunt",
-"region": "Hong Kong",
-"coordinate": {
-"lat": 22.293678,
-"lon": 114.16717
-
-},
-"description": "In exercitation dolor eiusmod et elit nisi officia dolor do voluptate sit mollit quis. Ad nulla amet qui excepteur duis qui aute culpa sit. Tempor voluptate duis consequat aliquip labore. Lorem aute aliquip sit labore esse. Cupidatat magna eiusmod aliqua velit anim. Ad aliquip eu ea cillum fugiat sint.\r\n",
-"preview": "https://lh6.googleusercontent.com/proxy/KD3RAGVKSjs4SBrIh6Hb_p8BxLNiqF7JW79Igomf8kZFvlbRKx2XgAxEs3cgBT3VDUhwZ4Bkl-36Han154idrqu0J8OD8Q=w408-h306"
-
-}
-];
-
-_.each(hotspot, function(doc) {
-	Hotspot.insert(doc);
-
-});
-
 Hotspot.insert({ id: 6, name: "The Peak", region: "Hong Kong", coordinate: { lat: 22.2758829, lon: 114.1367558 }, description: "With some seven million visitors every year, the Peak is a major tourist attraction of Hong Kong.[3] It offers spectacular views of the city and its harbours. The viewing deck also has coin operated telescopes that the visitors can use to enjoy the cityscape. The number of visitors led to the construction of two major leisure and shopping centres, the Peak Tower and the Peak Galleria, situated adjacent to each other.", preview: "https://lh6.googleusercontent.com/-ue4q1EUUT50/Vjx-ZX7rfCI/AAAAAAAAEW0/72dGyW7kIf4/s408-k-no/" });
 Hotspot.insert({ id: 7, name: "Ocean Park", region: "Hong Kong", coordinate: { lat: 22.2466607, lon: 114.1735299 }, description: "Opened in 1977, Ocean Park Hong Kong is a marine-life theme park featuring animal exhibits, thrill rides and shows. In 2012, its impressive ability to offer guests a world-class experience that blends entertainment with education and conservation was confirmed when it became the first Asian winner of the biannual Applause Award, the most prestigious award in the amusement and theme park industry.", preview: "http://www.discoverhongkong.com/eng/images/see-do/highlight-attractions/large/1.1.1.7-Ocean-Park_03b.jpg" });
 Hotspot.insert({ id: 8, name: "LegCo Building", region: "Hong Kong", coordinate: { lat: 22.2809605, lon: 114.1581015 }, description: "The Hong Kong government is dedicated to knocking down just about anything that’s more than 20 years old. LegCo has survived because it’s where the government sat for much of the last hundred years and is now the Court of Final Appeal. The building is in grand British colonial style with sturdy granite columns and gilded verandas; a powerful statement by the men in mustaches that once ran the city.", preview: "https://lh6.googleusercontent.com/proxy/IMq5frdYPLnuug3BnVrSx5W9utgcb_s2Uqw_XfvZjNhEbqOemBNTDI_IivU9LYfCiLed1YHS7yqVEz3O13WzRzXETrtPwPgZGXplmcsHOmsQyXdWpdaP6d_m3qttOB7KZi9XMlWa6YSSVCjGX21hlB7qaaEE1w=w408-h271" });
@@ -96,7 +23,7 @@ var event_data = [
 "name": "A Symphony of Lights",
 "start": Date.parse("2016-04-22 20:00"),
 "end": Date.parse("2016-04-22 21:00"),
-"location": "Avenue of Star",
+"location": "Tsim Sha Tsui Promenade",
 "description": "largest light shows in the world."
 },
 
