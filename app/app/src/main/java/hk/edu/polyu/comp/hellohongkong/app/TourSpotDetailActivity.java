@@ -169,9 +169,9 @@ public class TourSpotDetailActivity extends AppCompatActivity implements Connect
         mvEventHeader = (LinearLayout) findViewById(R.id.eventHeader);
         mvEventListView = (ListView) findViewById(R.id.tourSpotDetailListView);
         int EventListSize = setupEventList();
-        int linePX = dpToPx(10);
+        int itemPx = (int)dpToPx(10 + 95);
         ViewGroup.LayoutParams lvEventListViewParams = mvEventListView.getLayoutParams();
-        lvEventListViewParams.height = (183 + linePX) * EventListSize;
+        lvEventListViewParams.height = itemPx * EventListSize;
     }
 
     public int setupEventList() {
@@ -280,9 +280,9 @@ public class TourSpotDetailActivity extends AppCompatActivity implements Connect
         super.onStop();
     }
 
-    public int dpToPx(int dp) {
-        DisplayMetrics displayMetrics = mvResources.getDisplayMetrics();
-        int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+    public float dpToPx(int dp) {
+        DisplayMetrics metrics = mvResources.getDisplayMetrics();
+        float px = dp * ((float)metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
         return px;
     }
 }
