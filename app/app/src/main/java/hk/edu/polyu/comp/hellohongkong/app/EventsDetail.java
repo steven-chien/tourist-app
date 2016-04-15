@@ -1,9 +1,12 @@
 package hk.edu.polyu.comp.hellohongkong.app;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.provider.CalendarContract;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
@@ -15,6 +18,9 @@ import java.util.Calendar;
  * Created by zhoumoyuan on 4/14/16.
  */
 public class EventsDetail extends AppCompatActivity {
+    private Resources mvResources;
+    private Toolbar mvToolbar;
+
     String name, location, description;
     Date startTime, endTime;
 
@@ -22,6 +28,15 @@ public class EventsDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_details);
+        mvResources = getResources();
+
+        mvToolbar = (Toolbar) findViewById(R.id.myToolbar);
+        setSupportActionBar(mvToolbar);
+        ActionBar lvActionBar = getSupportActionBar();
+        lvActionBar.setDisplayHomeAsUpEnabled(true);
+        if (mvToolbar != null) {
+            mvToolbar.setTitle(mvResources.getString(R.string.app_name));
+        }
 
         TextView nameTextView = (TextView) findViewById(R.id.eventNameTextView);
         TextView locationTextView = (TextView) findViewById(R.id.locationTextView);

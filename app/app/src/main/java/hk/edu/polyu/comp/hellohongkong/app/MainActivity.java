@@ -14,13 +14,10 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private static boolean svIsHotSpotInfoGot = false;
-    private final int BACKGROUND_MIN = 0;
-    private final int BACKGROUND_MAX = 3;
+    private static boolean svIsEventInfoGot = false;
 
     private ServerRequestManager svServerRequestManager;
-    private TourSpotManager svTourSpotManager;
 
-    private ImageView mvBackgroundImageContainer;
     private FloatingActionButton mvMainMapButton;
     private FloatingActionButton mvMainHotSpotButton;
     private FloatingActionButton mvMainEventButton;
@@ -31,12 +28,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         svServerRequestManager = ServerRequestManager.getInstance();
-        svTourSpotManager = TourSpotManager.getInstance();
 
-//        mvBackgroundImageContainer = (ImageView) findViewById(R.id.mainBackgroundContainer);
-//        Random lvRandom = new Random();
-//        int lvRandomBackgroundIndex = lvRandom.nextInt((BACKGROUND_MAX - BACKGROUND_MIN) + 1) + BACKGROUND_MIN;
-//        mvBackgroundImageContainer.setImageResource(getResources().getIdentifier("main_background" + lvRandomBackgroundIndex, "drawable", getPackageName()));
+        // Request Hot Spot Info
+        if (!svIsHotSpotInfoGot) {
+            svServerRequestManager.requestHotSpotInfo();
+            svIsHotSpotInfoGot = true;
+        }
+
+        // Request Event Info
+        if (!svIsEventInfoGot) {
+            svServerRequestManager.requestEventInfo();
+            svIsEventInfoGot = true;
+        }
 
         mvMainMapButton = (FloatingActionButton) findViewById(R.id.mainMapButton);
         mvMainMapButton.setOnClickListener(new View.OnClickListener() {
@@ -73,12 +76,5 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(intent);
             }
         });
-
-
-        // Request Hot Spot Info
-        if (!svIsHotSpotInfoGot) {
-            svServerRequestManager.requestHotSpotInfo();
-            svIsHotSpotInfoGot = true;
-        }
     }
 }

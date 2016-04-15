@@ -1,9 +1,11 @@
 package hk.edu.polyu.comp.hellohongkong.app;
 
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -21,9 +23,11 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import hk.edu.polyu.comp.hellohongkong.app.R;
 
@@ -31,16 +35,18 @@ public class TourHotSpotMapActivity extends AppCompatActivity implements Connect
     private static TourSpotManager svTourSpotManager;
     private Resources mvResources;
 
+    private Toolbar mvToolbar;
     private GoogleApiClient mvGoogleApiClient;
     private Location mvLastLocation;
     private MapFragment mvMapFragment;
     private GoogleMap mvMap;
 
-    private Toolbar mvToolbar;
-
     private double[] mvHKLocation = new double[]{22.28552, 114.15769};
     private double mvCurrentLatitude = 0;
     private double mvCurrentLongitude = 0;
+    private ArrayList<TourSpot> mvTourSpotList;
+
+    private HashMap<String, Integer> mvMarkerClickCountMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +54,7 @@ public class TourHotSpotMapActivity extends AppCompatActivity implements Connect
         setContentView(R.layout.activity_tour_hot_spot_map);
 
         svTourSpotManager = TourSpotManager.getInstance();
+        mvTourSpotList = svTourSpotManager.getTourSpotList();
         mvResources = getResources();
 
         mvToolbar = (Toolbar) findViewById(R.id.myToolbar);
@@ -76,15 +83,13 @@ public class TourHotSpotMapActivity extends AppCompatActivity implements Connect
     }
 
     public void displayTourSpotMarker(String pDisplayType) {
-        ArrayList<TourSpot> lvTourSpotList = svTourSpotManager.getTourSpotList();
-
         if (pDisplayType.equals("All")) {
-            for (TourSpot lvTourSpot : lvTourSpotList) {
+            for (TourSpot lvTourSpot : mvTourSpotList) {
                 addMarkerOnMap(lvTourSpot.getName(), lvTourSpot.getLatitude(), lvTourSpot.getLongitude(), lvTourSpot.getColor());
             }
         }
         else {
-            for (TourSpot lvTourSpot : lvTourSpotList) {
+            for (TourSpot lvTourSpot : mvTourSpotList) {
                 if (pDisplayType.equals(lvTourSpot.getHKRegion())) {
                     addMarkerOnMap(lvTourSpot.getName(), lvTourSpot.getLatitude(), lvTourSpot.getLongitude(), lvTourSpot.getColor());
                 }
@@ -115,7 +120,31 @@ public class TourHotSpotMapActivity extends AppCompatActivity implements Connect
         mvMap = map;
         mvMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mvHKLocation[0], mvHKLocation[1]), 9.6f));
         displayTourSpotMarker("All");
+        mvMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                String lvClickedTourSpotName = marker.getTitle();
 
+                if (mvMarkerClickCountMap.containsKey(lvClickedTourSpotName)) {
+                    for (TourSpot lvTourSpot : mvTourSpotList) {
+                        if (lvClickedTourSpotName.equals(lvTourSpot.getName())) {
+                            String lvID = lvTourSpot.getID();
+                            Intent lvIntent = new Intent(TourHotSpotMapActivity.this, TourSpotDetailActivity.class);
+                            lvIntent.putExtra("id", lvID);
+                            startActivity(lvIntent);
+                        }
+                    }
+                }
+                else {
+                    mvMarkerClickCountMap.clear();
+                    mvMarkerClickCountMap.put(lvClickedTourSpotName, 1);
+                    new MarkerDoubleClickTimer().execute(lvClickedTourSpotName);
+                    marker.showInfoWindow();
+                }
+
+                return true;
+            }
+        });
     }
 
     @Override
@@ -213,14 +242,22 @@ public class TourHotSpotMapActivity extends AppCompatActivity implements Connect
         super.onStop();
     }
 
-//    public double round(double pValue, int pPlaces) {
-//        if (pPlaces < 0) {
-//            return pValue;
-//        }
-//
-//        long lvFactor = (long) Math.pow(10, pPlaces);
-//        pValue = pValue * lvFactor;
-//        long lvTemp = Math.round(pValue);
-//        return (double) lvTemp / lvFactor;
-//    }
+    private class MarkerDoubleClickTimer extends AsyncTask<String, Void, Boolean> {
+
+        @Override
+        public Boolean doInBackground(String... pTourSpotNames) {
+            String lvTourSpotName = pTourSpotNames[0];
+            try {
+                Thread.sleep(700);
+                if (mvMarkerClickCountMap.containsKey(lvTourSpotName)) {
+                    System.out.println("****************************************** Clean");
+                    mvMarkerClickCountMap.remove(lvTourSpotName);
+                }
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
 }
