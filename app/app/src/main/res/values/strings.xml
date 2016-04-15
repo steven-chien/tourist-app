@@ -5,7 +5,7 @@
     <string name="waiting_for_nfc">Waiting for NFC detection</string>
 
     <string name="hot_spot">Hot Spots</string>
-    <string name="hot_spot_welcome">Here are the famous tourist sites we recommend to you!!</string>
+    <string name="hot_spot_welcome">Here are the famous tourist sites we recommend to you!</string>
 	
 	<string name="action_bar_hongkong">Hong Kong Island</string>
     <string name="action_bar_kowloon">Kowloon</string>
@@ -26,6 +26,6 @@
         jbsafivhrbv  hvberjhrqi avjrjh vbjhvb erbvhkabuirqi avjrjbsafiesbfhawrbfjhdbsakjvburavbjhdsbvajh abvhrbv hjs hvb
         jbsafivhrbv  hvberjhrqi avjrjh vbjhvb erbvhkabuirqi avjrjbsafiesbfhawrbfjhdbsakjvburavbjhdsbvajh abvhrbv hjs hvb
     </string>
-    <string name="events_welcome">Here are the famous events around you!</string>
+    <string name="events_welcome">Exciting and amazing events are waiting for you, join now!</string>
 
 </resources>
